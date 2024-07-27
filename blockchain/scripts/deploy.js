@@ -21,33 +21,79 @@ async function main() {
     const donaTheta = await DonaTheta.deploy();
     await donaTheta.deployed();
 
-    console.log("Deploy: Token address:", donaTheta.address);
+    console.log("Deploy: DonaTheta address:", donaTheta.address);
+
+    const Token = await ethers.getContractFactory("Token");
+    const token = await Token.deploy();
+    await token.deployed();
+
+    console.log("Deploy: Token address:", token.address);
     console.log("Deploy: Contract deployed.")
 
     // Save the frontend files
-    saveFrontendFiles(donaTheta);
+    saveFrontendFiles("DonaTheta", donaTheta);
+    saveFrontendFiles("Token", token);
+
+    saveContractAddresses([
+        {
+            "name": "Token",
+            "address": token.address
+        },
+        {
+            "name": "DonaTheta",
+            "address": donaTheta.address
+        }
+    ])
 }
 
-function saveFrontendFiles(token) {
+function saveContractAddresses(tokens) {
     const fs = require("fs");
-    const contractsDir = __dirname + "/../frontend/src/abi";
+    const contractsDir = removeLastDirectory(removeLastDirectory(__dirname)) + "/frontend/src/abi";
 
     if (!fs.existsSync(contractsDir)) {
         fs.mkdirSync(contractsDir);
     }
 
+    let obj = {}
+
+    for (const token of tokens) {
+        obj[token.name] = token.address
+    }
+
     fs.writeFileSync(
         contractsDir + "/contract-address.json",
-        JSON.stringify({ Token: token.address }, undefined, 2)
+        JSON.stringify(obj, undefined, 2)
     );
+}
 
-    const DonaThetaArtifact = artifacts.readArtifactSync("DonaTheta");
+function saveFrontendFiles(name, token) {
+    const fs = require("fs");
+    const contractsDir = removeLastDirectory(removeLastDirectory(__dirname)) + "/frontend/src/abi";
+
+    if (!fs.existsSync(contractsDir)) {
+        fs.mkdirSync(contractsDir);
+    }
+
+    const DonaThetaArtifact = artifacts.readArtifactSync(name);
 
     fs.writeFileSync(
-        contractsDir + "/DonaTheta.json",
+        contractsDir + `/${name}.json`,
         JSON.stringify(DonaThetaArtifact, null, 2)
     );
 
+}
+
+function removeLastDirectory(directoryName) {
+    // Find the last occurrence of either '/' or '\'
+    const lastSlashIndex = Math.max(directoryName.lastIndexOf('/'), directoryName.lastIndexOf('\\'));
+
+    // If there is no slash found, return the original string
+    if (lastSlashIndex === -1) {
+        return directoryName;
+    }
+
+    // Return the substring up to (but not including) the last slash
+    return directoryName.substring(0, lastSlashIndex);
 }
 
 

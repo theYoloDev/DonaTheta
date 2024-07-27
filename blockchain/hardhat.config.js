@@ -15,7 +15,7 @@ module.exports = {
     defaultNetwork: "theta_privatenet",
     networks: {
         theta_privatenet: {
-            url: "http://192.168.1.103:18888/rpc",
+            url: "http://localhost:18888/rpc",
             accounts: [
                 "1111111111111111111111111111111111111111111111111111111111111111",
                 "2222222222222222222222222222222222222222222222222222222222222222",

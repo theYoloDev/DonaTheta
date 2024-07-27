@@ -4,9 +4,9 @@
 // Here's a list of network ids https://docs.metamask.io/guide/ethereum-provider.html#properties
 // to use when deploying to other networks.
 const HARDHAT_NETWORK_ID = '31337';
-const THETA_MAINNET_NETWORK_ID = '0x169';
-const THETA_TESTNET_NETWORK_ID = '0x16d';
-const THETA_PRIVATENET_NETWORK_ID = '0x16e';
+const THETA_MAINNET_NETWORK_ID = '361';
+const THETA_TESTNET_NETWORK_ID = '365';
+const THETA_PRIVATENET_NETWORK_ID = '366';
 
 export default class Web3Api {
 
@@ -22,13 +22,13 @@ export default class Web3Api {
             return;
         }
 
+        return selectedAddress;
     }
 
-    static initializeDApp(
-        userAddress
-    ) {
-
-
+    static listenToWalletChanges(action) {
+        window.ethereum.on('accountsChanged', async () => {
+            action();
+        })
     }
 
     static checkIfNetworkIsConfigured(
