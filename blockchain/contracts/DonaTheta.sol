@@ -6,19 +6,19 @@ import "hardhat/console.sol";
 // This is the piggy bank for a donation project
 contract DonaTheta {
     // Dona organizers
-    address public owner;
-    address[] public donaStaff;
+    address payable public owner;
+    address[] private donaStaff;
 
     uint256 public numberOfDonationProjects = 0;
 
     // Total Target Amount
-    uint256 public totalTargetAmount;
+    uint256 public totalTargetAmount = 0;
 
     // Amount of funds donated
-    uint256 public totalDonationsReceived;
+    uint256 public totalDonationsReceived = 0;
 
     // Amount of funds withdrawn
-    uint256 public totalDonationsUtilized;
+    uint256 public totalDonationsUtilized = 0;
 
     uint256[] private unapprovedDonationProjects;
 
@@ -157,28 +157,6 @@ contract DonaTheta {
         _;
     }
 
-    // Modifier to ensure the project is safe for donations
-    modifier projectSafeForDonation(uint256 projectId) {
-        DonationProject storage currentDonationProject = donationProjects[projectId];
-        require(currentDonationProject.isApproved, "Donation can only happen on an approved project");
-
-        if (currentDonationProject.donationPeriodType == DonationPeriodType.STRICT) {
-            uint currentTime = block.timestamp;
-            require(currentTime > currentDonationProject.startDonationDate, "Donation cannot happen before selected period");
-            require(currentTime < currentDonationProject.endDonationDate, "Donation cannot happen after selected period");
-            require(currentDonationProject.isOpenForDonations, "The Donation Project has been closed");
-        } else {
-            require(currentDonationProject.isOpenForDonations, "The Donation Project has been closed to donations");
-        }
-        _;
-    }
-
-    modifier projectIsClosedForDonations(uint256 projectId) {
-        DonationProject storage currentDonationProject = donationProjects[projectId];
-        require(currentDonationProject.isOpenForDonations, "The Donation Project is not closed for donations");
-        _;
-    }
-
     // Modifier to check whether a Withdrawal Request is ready for Voting
     modifier requestSafeForVoting(
         uint256 projectId,
@@ -223,16 +201,15 @@ contract DonaTheta {
         Image,
         Document,
         Video,
-        LiveStream,
-        AudioClip
+        LiveStream
     }
 
     // Struct representing media items
     struct MediaItem {
-        string name;
-        string description;
+        string mediaItemName;
+        string mediaItemDescription;
         MediaItemType mediaItemType;
-        string url;
+        string mediaItemUrl;
     }
 
     // Struct to represent a single withdrawal request
@@ -273,7 +250,7 @@ contract DonaTheta {
         MediaItem[] liveStreams;                                // Supporting LiveStreams
 
         bool isApproved;                                        // Whether or not the project is approved by DonaTheta Organizers
-        bool isOpenForDonations;                                // The project is open for donations
+        bool isFinalized;                                // The project is open for donations
         uint256 numberOfWithdrawalRequests;                     // The number of withdrawal requests
 
         address[] donors;                                       // Number of donors
@@ -294,8 +271,8 @@ contract DonaTheta {
     event WithdrawalExecuted(uint256 indexed projectId, uint256 requestId, uint256 amount);
 
     // Constructor to initialize the owner
-    constructor() {
-        owner = msg.sender;
+    constructor() payable {
+        owner = payable(msg.sender);
     }
 
     // Function to create a new donation project
@@ -338,7 +315,7 @@ contract DonaTheta {
         newDonationProject.startDonationDate = startDonationDate;
         newDonationProject.endDonationDate = endDonationDate;
         newDonationProject.isApproved = false;
-        newDonationProject.isOpenForDonations = false;
+        newDonationProject.isFinalized = false;
         newDonationProject.totalAmountDonated = 0;
         newDonationProject.totalAmountWithdrawn = 0;
 
@@ -379,8 +356,10 @@ contract DonaTheta {
     }
 
     // Function to donate to a project
-    function makeDonation(uint256 projectId) public payable projectSafeForDonation(projectId) {
+    function makeDonation(uint256 projectId) public payable {
         DonationProject storage currentDonationProject = donationProjects[projectId];
+
+        owner.transfer(msg.value);
 
         currentDonationProject.donors.push(msg.sender);
         currentDonationProject.totalAmountDonated += msg.value;
@@ -396,12 +375,12 @@ contract DonaTheta {
         DonationProject storage project = donationProjects[_projectId];
 
         // Remove require for donation period check
-        if (!project.isOpenForDonations) {
+        if (!project.isFinalized) {
             // If donations are already closed, just return
             return;
         }
 
-        project.isOpenForDonations = false;
+        project.isFinalized = false;
 
         // Ensure there are donors to process
         uint256 donorCount = project.donors.length;
@@ -544,7 +523,7 @@ contract DonaTheta {
         DonationProject storage currentDonationProject = donationProjects[projectId];
 
         require(currentWithdrawalRequest.withdrawalRequestStatus == WithdrawalRequestStatus.ApprovedByCommittee, "Request must be fully approved to withdraw funds");
-        require(currentDonationProject.totalAmountDonated >= currentWithdrawalRequest.withdrawAmount, "Insufficient funds in the project");
+        require((currentDonationProject.totalAmountDonated - currentDonationProject.totalAmountWithdrawn) >= currentWithdrawalRequest.withdrawAmount, "Insufficient funds in the project");
 
         currentDonationProject.totalAmountWithdrawn += currentWithdrawalRequest.withdrawAmount;
         totalDonationsUtilized += currentWithdrawalRequest.withdrawAmount;
@@ -577,16 +556,16 @@ contract DonaTheta {
     // Function to add a Donation Project Media Item
     function addDonationProjectMediaItem(
         uint256 projectId,
-        string memory name,
-        string memory description,
-        string memory url,
+        string memory mediaItemName,
+        string memory mediaItemDescription,
+        string memory mediaItemUrl,
         MediaItemType mediaItemType
     ) public onlyOrganizer(projectId) {
         MediaItem memory newMediaItem = MediaItem({
-            name: name,
-            description: description,
+            mediaItemName: mediaItemName,
+            mediaItemDescription: mediaItemDescription,
             mediaItemType: mediaItemType,
-            url: url
+            mediaItemUrl: mediaItemUrl
         });
 
         if (mediaItemType == MediaItemType.Image) {
@@ -606,9 +585,9 @@ contract DonaTheta {
     function editDonationProjectMediaItem(
         uint256 projectId,
         uint256 mediaItemIndex,
-        string memory name,
-        string memory description,
-        string memory url,
+        string memory mediaItemName,
+        string memory mediaItemDescription,
+        string memory mediaItemUrl,
         MediaItemType mediaItemType
     ) public onlyOrganizer(projectId) {
         MediaItem[] storage mediaItems;
@@ -627,9 +606,9 @@ contract DonaTheta {
 
         require(mediaItemIndex < mediaItems.length, "Invalid Media Item Index");
         MediaItem storage mediaItem = mediaItems[mediaItemIndex];
-        mediaItem.name = name;
-        mediaItem.description = description;
-        mediaItem.url = url;
+        mediaItem.mediaItemName = mediaItemName;
+        mediaItem.mediaItemDescription = mediaItemDescription;
+        mediaItem.mediaItemUrl = mediaItemUrl;
     }
 
     // Function to delete a Donation Project Media Item
@@ -676,16 +655,16 @@ contract DonaTheta {
     function addWithdrawalRequestMediaItem(
         uint256 projectId,
         uint256 requestId,
-        string memory name,
-        string memory description,
-        string memory url,
+        string memory mediaItemName,
+        string memory mediaItemDescription,
+        string memory mediaItemUrl,
         MediaItemType mediaItemType
     ) public onlyOrganizer(projectId) {
         MediaItem memory newMediaItem = MediaItem({
-            name: name,
-            description: description,
+            mediaItemName: mediaItemName,
+            mediaItemDescription: mediaItemDescription,
             mediaItemType: mediaItemType,
-            url: url
+            mediaItemUrl: mediaItemUrl
         });
 
         if (mediaItemType == MediaItemType.Image) {
@@ -706,9 +685,9 @@ contract DonaTheta {
         uint256 projectId,
         uint256 requestId,
         uint256 mediaItemIndex,
-        string memory name,
-        string memory description,
-        string memory url,
+        string memory mediaItemName,
+        string memory mediaItemDescription,
+        string memory mediaItemUrl,
         MediaItemType mediaItemType
     ) public onlyOrganizer(projectId) {
         MediaItem[] storage mediaItems;
@@ -727,9 +706,9 @@ contract DonaTheta {
 
         require(mediaItemIndex < mediaItems.length, "Invalid Media Item Index");
         MediaItem storage mediaItem = mediaItems[mediaItemIndex];
-        mediaItem.name = name;
-        mediaItem.description = description;
-        mediaItem.url = url;
+        mediaItem.mediaItemName = mediaItemName;
+        mediaItem.mediaItemDescription = mediaItemDescription;
+        mediaItem.mediaItemUrl = mediaItemUrl;
     }
 
     // Function to delete a Withdrawal Request Media Item
@@ -758,25 +737,6 @@ contract DonaTheta {
         mediaItems.pop();
     }
 
-    // Function to clear Withdrawal Request Media Items
-    function clearWithdrawalRequestMediaItems(
-        uint256 projectId,
-        uint256 requestId,
-        MediaItemType mediaItemType
-    ) public onlyOrganizerOrDonaStaff(projectId) {
-        if (mediaItemType == MediaItemType.Image) {
-            delete withdrawalRequests[projectId][requestId].images;
-        } else if (mediaItemType == MediaItemType.Video) {
-            delete withdrawalRequests[projectId][requestId].videos;
-        } else if (mediaItemType == MediaItemType.Document) {
-            delete withdrawalRequests[projectId][requestId].documents;
-        } else if (mediaItemType == MediaItemType.LiveStream) {
-            delete withdrawalRequests[projectId][requestId].liveStreams;
-        } else {
-            revert("Invalid media item type");
-        }
-    }
-
 
     //<editor-fold desc="MISCELLANEOUS">
 
@@ -789,20 +749,32 @@ contract DonaTheta {
         if(requestType == 0) {
             return donationProjects[projectId].projectId;
         } else if (requestType == 1) {
-            return donationProjects[projectId].donationTarget;
+            if (donationProjects[projectId].isApproved) {
+                return 1;
+            } else {
+                return 0;
+            }
         } else if (requestType == 2) {
-            return donationProjects[projectId].totalAmountDonated;
+            if (donationProjects[projectId].isFinalized) {
+                return 1;
+            } else {
+                return 0;
+            }
         } else if (requestType == 3) {
-            return donationProjects[projectId].totalAmountWithdrawn;
+            return donationProjects[projectId].donationTarget;
         } else if (requestType == 4) {
-            return donationProjects[projectId].donors.length;
+            return donationProjects[projectId].totalAmountDonated;
         } else if (requestType == 5) {
-            return donationProjects[projectId].startDonationDate;
+            return donationProjects[projectId].totalAmountWithdrawn;
         } else if (requestType == 6) {
-            return donationProjects[projectId].endDonationDate;
+            return donationProjects[projectId].donors.length;
         } else if (requestType == 7) {
-            return donationProjects[projectId].numberOfWithdrawalRequests;
+            return donationProjects[projectId].startDonationDate;
         } else if (requestType == 8) {
+            return donationProjects[projectId].endDonationDate;
+        } else if (requestType == 9) {
+            return donationProjects[projectId].numberOfWithdrawalRequests;
+        } else if (requestType == 10) {
             return donationProjects[projectId].totalDonationsByAddress[msg.sender];
         } else {
             revert("Invalid Request Type");
@@ -822,6 +794,22 @@ contract DonaTheta {
         }
     }
 
+    function getDonationProjectAddressDetails(
+        uint256 projectId,
+        uint8 requestType
+    ) public view returns(address[] memory) {
+        if(requestType == 0) {
+            return donationProjects[projectId].organizers;
+        } else if (requestType == 1) {
+            return donationProjects[projectId].donors;
+        } else if (requestType == 2) {
+            return donationProjects[projectId].topContributors;
+        } else if (requestType == 2) {
+            return donationProjects[projectId].randomContributors;
+        } else {
+            revert("Invalid Request Type");
+        }
+    }
 
     // Withdrawal Request
 
@@ -848,9 +836,23 @@ contract DonaTheta {
         if(requestType == 0) {
             return withdrawalRequests[projectId][requestId].withdrawAmount;
         } else if (requestType == 1) {
-            return withdrawalRequests[projectId][requestId].numberOfApprovals;
+            WithdrawalRequestStatus status = withdrawalRequests[projectId][requestId].withdrawalRequestStatus;
+
+            if(status == WithdrawalRequestStatus.ApprovedByCommittee) {
+                return 1;
+            } else if(status == WithdrawalRequestStatus.Rejected) {
+                return 2;
+            } else if(status == WithdrawalRequestStatus.Withdrawn) {
+                return 3;
+            } else {
+                return 0;
+            }
         } else if (requestType == 2) {
+            return withdrawalRequests[projectId][requestId].numberOfApprovals;
+        } else if (requestType == 3) {
             return withdrawalRequests[projectId][requestId].numberOfRejections;
+        } else if (requestType == 4) {
+            return donationProjects[projectId].totalDonaApprovalCommitteeMembers;
         } else {
             revert("Invalid Request Type");
         }
@@ -861,6 +863,20 @@ contract DonaTheta {
         uint256 requestId
     ) public view returns(address) {
         return withdrawalRequests[projectId][requestId].owner;
+    }
+
+    function getWithdrawalRequestAddressesDetails(
+        uint256 projectId,
+        uint256 requestId,
+        uint8 requestType
+    ) public view returns(address[] memory) {
+        if(requestType == 0) {
+            return withdrawalRequests[projectId][requestId].approvals;
+        } else if (requestType == 1) {
+            return withdrawalRequests[projectId][requestId].rejections;
+        } else {
+            revert("Invalid Request Type");
+        }
     }
 
     // Function to get the users organizing projects

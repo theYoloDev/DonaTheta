@@ -5,10 +5,10 @@ import DonaThetaArtifactEtherApi from "../scripts/DonaThetaArtifactEtherApi";
 import Web3Api from "../scripts/Web3Api";
 
 export default function OrganizersPage({
-    isUserWalletConnected,
-    contract,
-    address
-}) {
+                                           isUserWalletConnected,
+                                           contract,
+                                           address
+                                       }) {
 
     const [hasQueriedForData, setHasQueriedForData] = useState(false);
     const [organizingProjects, setOrganizingProjects] = useState([]);
@@ -86,7 +86,7 @@ export default function OrganizersPage({
         }
     }
 
-    const queryUnapprovedProjects = async() => {
+    const queryUnapprovedProjects = async () => {
         try {
             let unapprovedProjectIds = await DonaThetaArtifactEtherApi.getUnapprovedDonationProjectIds(contract);
 
@@ -106,9 +106,9 @@ export default function OrganizersPage({
 
     //<editor-fold desc="Form Functions">
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
 
-        setNewProject({ ...newProject, [name]: value });
+        setNewProject({...newProject, [name]: value});
     }
 
     const handleAddOrganizer = () => {
@@ -129,39 +129,54 @@ export default function OrganizersPage({
     };
 
     const handleCreateProject = async () => {
-        const { projectName, projectDescription, donationPeriodType, organizers, donationTarget, startDonationDate, endDonationDate } = newProject;
+        try {
+            const {
+                projectName,
+                projectDescription,
+                donationPeriodType,
+                organizers,
+                donationTarget,
+                startDonationDate,
+                endDonationDate
+            } = newProject;
 
-        const nonEmptyOrganizers = (organizers === undefined || organizers.length === 0) ? [] : organizers;
+            const nonEmptyOrganizers = (organizers === undefined || organizers.length === 0) ? [] : organizers;
 
-        const donationTargetInWei = DonaThetaArtifactEtherApi.parseEther(donationTarget);
+            const donationTargetInWei = DonaThetaArtifactEtherApi.parseEther(donationTarget);
 
-        await DonaThetaArtifactEtherApi.createDonationProject(
-            contract,
-            projectName,
-            projectDescription,
-            donationPeriodType,
-            nonEmptyOrganizers,
-            donationTargetInWei,
-            new Date(startDonationDate).getTime() / 1000,
-            new Date(endDonationDate).getTime() / 1000
-        );
-        setIsModalOpen(false);
-        // Optionally, you can refresh the project list after creation
-        await queryForData();
+            await DonaThetaArtifactEtherApi.createDonationProject(
+                contract,
+                projectName,
+                projectDescription,
+                donationPeriodType,
+                nonEmptyOrganizers,
+                donationTargetInWei,
+                new Date(startDonationDate).getTime() / 1000,
+                new Date(endDonationDate).getTime() / 1000
+            );
+            setIsModalOpen(false);
+            // Optionally, you can refresh the project list after creation
+            await queryForData();
+        } catch (e) {
+            alert("Error creating project");
+        }
     }
     //</editor-fold>
 
     return (
         <>
-            <div id="main" className="grow flex flex-col">
+            <div id="main" className="grow flex flex-col bg-gray-950">
                 {isUserWalletConnected ? (
                     <>
                         <div className="w-full mb-3">
-                            <div className="w-fit max-w-3xl mx-auto my-3 rounded-xl flex flex-col items-center px-4 py-2">
+                            <div
+                                className="w-fit max-w-3xl mx-auto my-3 rounded-xl flex flex-col items-center px-4 py-2">
                                 <h3 className="text-2xl">DonaTheta Organizers</h3>
                                 <p>Create, Edit and Keep Track of your Donation Projects</p>
                             </div>
                         </div>
+
+
 
                         {hasQueriedForData ? (
                             <div className="">
@@ -187,13 +202,15 @@ export default function OrganizersPage({
 
                                 {isDonaStaff && (
                                     <>
-                                        <div className="mt-6 mb-4">
-                                            <h5 className="text-center text-xl mt-2 mb-4">Unapproved Projects</h5>
-                                            <ProjectOrganizerTable
-                                                className="w-fit mx-auto"
-                                                organizingProjects={unapprovedProjects}
-                                            />
-                                        </div>
+                                        {unapprovedProjects.length > 0 && (
+                                            <div className="mt-6 mb-4">
+                                                <h5 className="text-center text-xl mt-2 mb-4">Unapproved Projects</h5>
+                                                <ProjectOrganizerTable
+                                                    className="w-fit mx-auto"
+                                                    organizingProjects={unapprovedProjects}
+                                                />
+                                            </div>
+                                        )}
                                     </>
                                 )}
                             </div>
@@ -201,7 +218,8 @@ export default function OrganizersPage({
                             <div className="w-full mb-3">
                                 <div className="flex flex-col items-center w-fit mx-auto my-3 px-4 py-2 rounded-xl">
                                     <h4 className="text-2xl">Query For Data</h4>
-                                    <p>Do you want to query for projects that you organize? (This action may utilize a lot of gas fees)</p>
+                                    <p>Do you want to query for projects that you organize? (This action may utilize a
+                                        lot of gas fees)</p>
                                     <button
                                         role="button"
                                         onClick={async () => {
@@ -228,9 +246,11 @@ export default function OrganizersPage({
 
                         {/* Modal for Creating Donation Project */}
                         {isModalOpen && (
-                            <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center overflow-y-auto">
+                            <div
+                                className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center overflow-y-auto">
                                 <div className="bg-blue-950 rounded-3xl shadow-xl p-6 w-1/2">
-                                    <h2 className="text-2xl text-center w-fit font-bold mx-auto mb-4">Create Donation Project</h2>
+                                    <h2 className="text-2xl text-center w-fit font-bold mx-auto mb-4">Create Donation
+                                        Project</h2>
                                     <form>
                                         <div className="mb-4">
                                             <label className="block text-gray-400">Project Name</label>
@@ -250,7 +270,7 @@ export default function OrganizersPage({
                                                 value={newProject.projectDescription}
                                                 onChange={handleInputChange}
                                                 className="mt-1 p-2 w-full border rounded-lg bg-transparent"
-                                                requ
+                                                required
                                             />
                                         </div>
                                         <div className="mb-4">
@@ -261,8 +281,8 @@ export default function OrganizersPage({
                                                 onChange={handleInputChange}
                                                 className="mt-1 p-2 w-full border rounded-lg bg-transparent"
                                             >
-                                                <option value="0">Open</option>
-                                                <option value="1">Strict</option>
+                                                <option value="0">Strict</option>
+                                                <option value="1">Open</option>
                                             </select>
                                         </div>
                                         <div className="mb-4">
