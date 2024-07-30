@@ -16,7 +16,7 @@ import DonaThetaGeneralInformation from "./models/DonaThetaGeneralInformation";
 import DonaThetaArtifactEtherApi from "./scripts/DonaThetaArtifactEtherApi";
 import ProjectPage from "./pages/ProjectPage";
 import DonaStaffPage from "./pages/DonaStaffPage";
-import WithdrawalRequestPage from "./pages/WithdrawalRequestPage";
+// import WithdrawalRequestPage from "./pages/WithdrawalRequestPage";
 
 function App() {
 
@@ -102,8 +102,8 @@ function App() {
                     />
                 },
                 {
-                    path: "/organizers",
-                    element: <OrganizersPage
+                    path: "/donastaff",
+                    element: <DonaStaffPage
                         isUserWalletConnected={isUserWalletConnected}
                         contract={contract}
                         walletAddress={walletAddress}
@@ -114,12 +114,12 @@ function App() {
                     element: <AboutUsPage/>
                 },
                 {
-                    path: "/donastaff",
-                    element: <DonaStaffPage
-                                isUserWalletConnected={isUserWalletConnected}
-                                contract={contract}
-                                walletAddress={walletAddress}
-                            />
+                    path: "/organizers",
+                    element: <OrganizersPage
+                        isUserWalletConnected={isUserWalletConnected}
+                        contract={contract}
+                        walletAddress={walletAddress}
+                    />
                 },
                 {
                     path: `/project/:projectId`,
@@ -132,17 +132,6 @@ function App() {
                         walletAddress={walletAddress}
                     />
                 },
-                {
-                    path: `/project/:projectId/withdrawalRequest/:requestId`,
-                    loader: ({params}) => {
-                        return params
-                    },
-                    element: <WithdrawalRequestPage
-                        isUserWalletConnected={isUserWalletConnected}
-                        contract={contract}
-                        walletAddress={walletAddress}
-                        />
-                }
             ]
         }
     ])

@@ -406,7 +406,7 @@ export default function ProjectOrganizersTab({
                         <div className="">
                             <button
                                 className="bg-blue-900 hover:bg-blue-600 rounded-lg px-4 py-1 my-2"
-                                onClick={handleFinalize}
+                                onClick={handleFinalizeProject}
                             >
                                 Finalize
                             </button>

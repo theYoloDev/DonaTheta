@@ -1,128 +1,141 @@
-import request from "request";
-
 const THETA_EDGECLOUD_API_KEY = "srvacc_n733cs8ugs30nvrrk5rmnv793"
 const THETA_EDGECLOUD_API_SECRET = "v0td9ay01ib80mwtpse33tk6tpmv3k8g"
 
 export default class ThetaVideoApi {
 
     static async createNewLiveStream(liveStreamName) {
-        let request = require('request');
-        const options = {
-            'method': 'POST',
-            'url': 'https://api.thetavideoapi.com/stream',
-            'headers': {
-                'x-tva-sa-id': THETA_EDGECLOUD_API_KEY,
-                'x-tva-sa-secret': THETA_EDGECLOUD_API_SECRET,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "name": liveStreamName
-            })
-        };
-        request(options, function (error, response) {
-            if (error) throw new Error(error);
-            console.log(response.body);
-            return response.body;
-        });
+        try {
+            const res = await fetch(
+                'https://api.thetavideoapi.com/stream',
+                {
+                    method: "POST",
+                    headers: {
+                        'x-tva-sa-id': THETA_EDGECLOUD_API_KEY,
+                        'x-tva-sa-secret': THETA_EDGECLOUD_API_SECRET,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "name": liveStreamName
+                    })
+                }
+            )
+
+            return res.body;
+        } catch (e) {
+            console.log("ThetaVideoApi: createNewLiveStream: error", e);
+            throw e;
+        }
     }
 
-    static async getLiveStream(
-        url
-    ) {
-        let request = require('request');
-        const options = {
-            'method': 'GET',
-            'url': `https://api.thetavideoapi.com/stream/${url}`,
-            'headers': {
-                'x-tva-sa-id': THETA_EDGECLOUD_API_KEY,
-                'x-tva-sa-secret': THETA_EDGECLOUD_API_SECRET
-            }
-        };
-        request(options, function (error, response) {
-            if (error) throw new Error(error);
-            console.log(response.body);
+    static async getLiveStream(liveStreamUrl) {
+        try {
+            const res = await fetch(
+                `https://api.thetavideoapi.com/stream/${liveStreamUrl}`,
+                {
+                    method: "GET",
+                    headers: {
+                        'x-tva-sa-id': THETA_EDGECLOUD_API_KEY,
+                        'x-tva-sa-secret': THETA_EDGECLOUD_API_SECRET
+                    }
+                }
+            );
 
-            return response.body;
-        });
+            return res.body;
+        } catch (e) {
+            console.log("ThetaVideoApi: getLiveStream: error", e)
+            throw e
+        }
     }
 
     static async listLiveStreams() {
-        let request = require('request');
-        const options = {
-            'method': 'GET',
-            'url': `https://api.thetavideoapi.com/service_account/${THETA_EDGECLOUD_API_KEY}/streams`,
-            'headers': {
-                'x-tva-sa-id': THETA_EDGECLOUD_API_KEY,
-                'x-tva-sa-secret': THETA_EDGECLOUD_API_SECRET
-            }
-        };
-        request(options, function (error, response) {
-            if (error) throw new Error(error);
-            console.log(response.body);
+        try {
 
-            return response.body;
-        });
+            const res = await fetch(
+                `https://api.thetavideoapi.com/service_account/${THETA_EDGECLOUD_API_KEY}/streams`,
+                {
+                    method: "GET",
+                    headers: {
+                        'x-tva-sa-id': THETA_EDGECLOUD_API_KEY,
+                        'x-tva-sa-secret': THETA_EDGECLOUD_API_SECRET
+                    }
+                }
+            )
+
+            return res.body;
+
+        } catch (e) {
+            console.log("ThetaVideoApi: listLiveStreams: error", e);
+            throw e;
+        }
     }
 
     static async listEdgeIngestors() {
-        let request = require('request');
-        const options = {
-            'method': 'GET',
-            'url': 'https://api.thetavideoapi.com/ingestor/filter',
-            'headers': {
-                'x-tva-sa-id': THETA_EDGECLOUD_API_KEY,
-                'x-tva-sa-secret': THETA_EDGECLOUD_API_SECRET
-            }
+        try {
+
+            const res = await fetch(
+                'https://api.thetavideoapi.com/ingestor/filter',
+                {
+                    method: "GET",
+                    headers: {
+                        'x-tva-sa-id': THETA_EDGECLOUD_API_KEY,
+                        'x-tva-sa-secret': THETA_EDGECLOUD_API_SECRET
+                    }
+                }
+            )
+
+            return res.body;
+
+        } catch (e) {
+            console.log("ThetaVideoApi: listEdgeIngestors: error", e);
+            throw e;
         }
-
-        request(options, function (error, response) {
-            if (error) throw new Error(error);
-            console.log(response.body);
-
-            return response.body;
-        });
     }
 
     static async selectEdgeIngestor(ingestorUrl, streamUrl) {
-        let request = require('request');
-        const options = {
-            'method': 'PUT',
-            'url': `https://api.thetavideoapi.com/ingestor/${ingestorUrl}/select`,
-            'headers': {
-                'x-tva-sa-id': THETA_EDGECLOUD_API_KEY,
-                'x-tva-sa-secret': THETA_EDGECLOUD_API_SECRET,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "tva_stream": streamUrl
-            })
-        };
-        request(options, function (error, response) {
-            if (error) throw new Error(error);
-            console.log(response.body);
+        try {
+            const res = await fetch(
+                `https://api.thetavideoapi.com/ingestor/${ingestorUrl}/select`,
+                {
+                    method: "PUT",
+                    headers: {
+                        'x-tva-sa-id': THETA_EDGECLOUD_API_KEY,
+                        'x-tva-sa-secret': THETA_EDGECLOUD_API_SECRET,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "tva_stream": streamUrl
+                    })
+                }
+            )
 
-            return response.body;
-        });
+            return res.body;
+        } catch (e) {
+            console.error("ThetaVideoApi: selectEdgeIngestor: error: ", e)
+            throw e
+        }
     }
 
     static async unselectEdgeIngestor(ingestorUrl) {
-        let request = require('request');
-        const options = {
-            'method': 'PUT',
-            'url': `https://api.thetavideoapi.com/ingestor/${ingestorUrl}/unselect`,
-            'headers': {
-                'x-tva-sa-id': THETA_EDGECLOUD_API_KEY,
-                'x-tva-sa-secret': THETA_EDGECLOUD_API_SECRET,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({})
-        };
-        request(options, function (error, response) {
-            if (error) throw new Error(error);
-            console.log(response.body);
+        try {
+            await fetch(
+                `https://api.thetavideoapi.com/ingestor/${ingestorUrl}/unselect`,
+                {
+                    method: "PUT",
+                    headers: {
+                        'x-tva-sa-id': THETA_EDGECLOUD_API_KEY,
+                        'x-tva-sa-secret': THETA_EDGECLOUD_API_SECRET,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                }
+            )
 
             return true;
-        });
+
+        } catch (e) {
+            console.log("ThetaVideoApi: unselectEdgeIngestor: Error", e);
+            throw e;
+        }
     }
 
 }

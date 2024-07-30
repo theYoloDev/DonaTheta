@@ -200,45 +200,55 @@ export default function ProjectPage({
         switch (tab) {
             case ProjectTab.MEDIA:
                 return (
-                    <ProjectMediaTab
-                        project={project}
-                        contract={contract}
-                        walletAddress={walletAddress}
-                    />
+                    <>
+                        <ProjectMediaTab
+                            project={project}
+                            contract={contract}
+                            walletAddress={walletAddress}
+                        />
+                    </>
+
                 );
             case ProjectTab.WITHDRAWAL:
                 return (
-                    <ProjectWithdrawalTab
-                        project={project}
-                        contract={contract}
-                        walletAddress={walletAddress}
-                        isOrganizer={isOrganizer}
-                        showCreateWithdrawalRequestDialog={() => {
-                            setShowCreateWithdrawalRequestDialog(true);
-                        }}
-                    />
+                    <>
+                        <ProjectWithdrawalTab
+                            project={project}
+                            contract={contract}
+                            walletAddress={walletAddress}
+                            isOrganizer={isOrganizer}
+                            showCreateWithdrawalRequestDialog={() => {
+                                setShowCreateWithdrawalRequestDialog(true);
+                            }}
+                        />
+                    </>
                 );
             case ProjectTab.ORGANIZERS:
                 return (
-                    <ProjectOrganizersTab
-                        project={project}
-                        contract={contract}
-                        walletAddress={walletAddress}
-                        isOrganizer={isOrganizer}
-                        isDonaStaff={isDonaStaff}
-                        showCreateWithdrawalRequestDialog={() => {
-                            setShowCreateWithdrawalRequestDialog(true);
-                        }}
-                        reQueryProject={() => queryProject(projectId)}
-                    />
+                    <>
+                        {/*<ProjectOrganizersTab*/}
+                        {/*    project={project}*/}
+                        {/*    contract={contract}*/}
+                        {/*    walletAddress={walletAddress}*/}
+                        {/*    isOrganizer={isOrganizer}*/}
+                        {/*    isDonaStaff={isDonaStaff}*/}
+                        {/*    showCreateWithdrawalRequestDialog={() => {*/}
+                        {/*        setShowCreateWithdrawalRequestDialog(true);*/}
+                        {/*    }}*/}
+                        {/*    reQueryProject={() => queryProject(projectId)}*/}
+                        {/*/>*/}
+                    </>
                 );
             default:
                 return (
-                    <ProjectMainTab
-                        project={project}
-                        contract={contract}
-                        walletAddress={walletAddress}
-                    />
+                    <>
+                        <ProjectMainTab
+                            project={project}
+                            contract={contract}
+                            walletAddress={walletAddress}
+                        />
+                    </>
+
                 );
         }
     };

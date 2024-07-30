@@ -5,110 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04ef14c0-e6cd-4f99-a106-8ee2af4998f1" name="Changes" comment="third commit">
-      <change afterPath="$PROJECT_DIR$/blockchain/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/DocumentList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ImageGrid.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/LiveStreamList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/VideoGrid.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/dialogs/AddMediaItemDialog.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/tabs/project/ProjectMediaTab.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/tabs/project/ProjectOrganizersTab.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/tabs/project/ProjectWithdrawalTab.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/tabs/withdrawalRequest/WithdrawalRequestMainTab.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/tabs/withdrawalRequest/WithdrawalRequestMediaTab.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/tabs/withdrawalRequest/WithdrawalRequestOrganizerTab.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/models/WithdrawalRequestStatus.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/WithdrawalRequestPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/scripts/HuggingFaceApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/scripts/PinataCloudApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/config-overrides.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/public/logo192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/public/logo512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/public/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/public/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/App.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/App.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/abi/DonaTheta.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/abi/Token.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/abi/contract-address.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/DocumentList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/DonaThetaGeneralInfo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/ImageGrid.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/LiveStreamList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/NavBar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/VideoGrid.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/WalletNotConnected.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/charts/PieChart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/charts/ProgressChart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/dialogs/AddMediaItemDialog.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/tables/MediaItemsOrganizersTable.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/tables/PastDonations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/tables/ProjectOrganizerTable.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/tables/TopProjectTableInfo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/tables/WithdrawalRequestOrganizerTable.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/tabs/project/ProjectMainTab.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/tabs/project/ProjectMediaTab.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/tabs/project/ProjectOrganizersTab.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/tabs/project/ProjectWithdrawalTab.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/tabs/withdrawalRequest/WithdrawalRequestMainTab.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/tabs/withdrawalRequest/WithdrawalRequestMediaTab.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/components/tabs/withdrawalRequest/WithdrawalRequestOrganizerTab.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/models/DonaThetaGeneralInformation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/models/DonationPeriodType.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/models/WithdrawalRequestStatus.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/pages/AboutUsPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/pages/DonaStaffPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/pages/ErrorPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/pages/HomePage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/pages/OrganizersPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/pages/ProjectPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/pages/ProjectsPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/pages/WithdrawalRequestPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/reportWebVitals.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/scripts/DonaThetaArtifactEtherApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/scripts/HuggingFaceApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/scripts/PinataCloudApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/scripts/ThetaVideoApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/scripts/TokenArtifactEthersApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/scripts/TokenArtifactWeb3Api.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/scripts/Web3Api.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/src/setupTests.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_frontend/tailwind.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blockchain/artifacts/contracts/DonaTheta.sol/DonaTheta.dbg.json" beforeDir="false" afterPath="$PROJECT_DIR$/blockchain/artifacts/contracts/DonaTheta.sol/DonaTheta.dbg.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blockchain/artifacts/contracts/DonaTheta.sol/DonaTheta.json" beforeDir="false" afterPath="$PROJECT_DIR$/blockchain/artifacts/contracts/DonaTheta.sol/DonaTheta.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blockchain/cache/solidity-files-cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/blockchain/cache/solidity-files-cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blockchain/contracts/DonaTheta.sol" beforeDir="false" afterPath="$PROJECT_DIR$/blockchain/contracts/DonaTheta.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/abi/DonaTheta.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/abi/DonaTheta.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/abi/contract-address.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/abi/contract-address.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/tables/MediaItemsOrganizersTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/tables/MediaItemsOrganizersTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/tables/ProjectOrganizerTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/tables/ProjectOrganizerTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/tables/WithdrawalRequestOrganizerTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/tables/WithdrawalRequestOrganizerTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/tabs/ProjectMainTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/tabs/project/ProjectMainTab.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/tabs/ProjectMediaTab.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/tabs/ProjectOrganizersTab.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/tabs/ProjectWithdrawalTab.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/HomePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/OrganizersPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/OrganizersPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/tabs/project/ProjectOrganizersTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/tabs/project/ProjectOrganizersTab.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/ProjectPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/ProjectPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/scripts/DonaThetaArtifactEtherApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scripts/DonaThetaArtifactEtherApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/scripts/ThetaVideoApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scripts/ThetaVideoApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old_frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/old_frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old_frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/old_frontend/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,59 +45,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="PackageJsonUpdateNotifier">
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/@istanbuljs/load-nyc-config/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/babel-jest/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/body-parser/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/chokidar/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/class-utils/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/clean-css/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/compression/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/create-ecdh/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/css-loader/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/css-tree/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/cssstyle/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/dot-prop/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/duplexify/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/elliptic/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/escodegen/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/express/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/extglob/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/fast-glob/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/gzip-size/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/has-values/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/hpack.js/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/icss-utils/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/jest-cli/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/jest-diff/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/jest-each/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/jest-util/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/jsonpath/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/make-dir/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/memory-fs/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/minizlib/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/node-fetch/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/pkg-dir/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/portfinder/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/prop-types/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/proxy-addr/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/pumpify/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/raw-body/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/read-pkg/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/renderkid/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/request/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/set-value/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/slice-ansi/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/snapdragon/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/stylehacks/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/sucrase/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/through2/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/tsutils/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/url-loader/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/web3-utils/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/webpack/package.json" />
-    <dismissed value="$PROJECT_DIR$/old_frontend/_ode_modules/wrap-ansi/package.json" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -282,7 +134,10 @@
       <workItem from="1722135378632" duration="32423000" />
       <workItem from="1722282626886" duration="51421000" />
       <workItem from="1722359452018" duration="2874000" />
-      <workItem from="1722363626815" duration="342000" />
+      <workItem from="1722363626815" duration="460000" />
+      <workItem from="1722364351236" duration="474000" />
+      <workItem from="1722368199144" duration="2322000" />
+      <workItem from="1722372185483" duration="6284000" />
     </task>
     <servers />
   </component>
