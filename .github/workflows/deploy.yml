@@ -16,18 +16,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Change Directory
-        run: cd frontend/
-
-      - name: List
-        run: ls
-
       - name: Install Dependencies
         run: npm install
-
-      - name: List
-        run: ls
+        working-directory: ./frontend
 
       - name: Build website
         run: npm run build
+        working-directory: ./frontend
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./frontend/build
+
 
