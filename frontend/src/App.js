@@ -2,7 +2,7 @@ import styles from './App.css';
 import NavBar from "./components/NavBar";
 import React, {useEffect, useState} from "react";
 import {
-    createBrowserRouter,
+    createHashRouter,
     RouterProvider,
     Outlet
 } from "react-router-dom";
@@ -12,7 +12,6 @@ import ErrorPage from "./pages/ErrorPage";
 import OrganizersPage from "./pages/OrganizersPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import Web3Api from "./scripts/Web3Api";
-import DonaThetaGeneralInformation from "./models/DonaThetaGeneralInformation";
 import DonaThetaArtifactEtherApi from "./scripts/DonaThetaArtifactEtherApi";
 import ProjectPage from "./pages/ProjectPage";
 import DonaStaffPage from "./pages/DonaStaffPage";
@@ -79,7 +78,7 @@ function App() {
         )
     }
 
-    const router = createBrowserRouter([
+    const router = createHashRouter([
         {
             path: "/",
             element: <MainLayout/>,
