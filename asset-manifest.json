@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/DonaTheta/static/css/main.4c3c1151.css",
+    "main.js": "/DonaTheta/static/js/main.8c34ca80.js",
+    "static/js/453.8ab44547.chunk.js": "/DonaTheta/static/js/453.8ab44547.chunk.js",
+    "index.html": "/DonaTheta/index.html",
+    "main.4c3c1151.css.map": "/DonaTheta/static/css/main.4c3c1151.css.map",
+    "main.8c34ca80.js.map": "/DonaTheta/static/js/main.8c34ca80.js.map",
+    "453.8ab44547.chunk.js.map": "/DonaTheta/static/js/453.8ab44547.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4c3c1151.css",
+    "static/js/main.8c34ca80.js"
+  ]
+}
