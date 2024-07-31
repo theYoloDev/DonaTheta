@@ -226,17 +226,17 @@ export default function ProjectPage({
             case ProjectTab.ORGANIZERS:
                 return (
                     <>
-                        {/*<ProjectOrganizersTab*/}
-                        {/*    project={project}*/}
-                        {/*    contract={contract}*/}
-                        {/*    walletAddress={walletAddress}*/}
-                        {/*    isOrganizer={isOrganizer}*/}
-                        {/*    isDonaStaff={isDonaStaff}*/}
-                        {/*    showCreateWithdrawalRequestDialog={() => {*/}
-                        {/*        setShowCreateWithdrawalRequestDialog(true);*/}
-                        {/*    }}*/}
-                        {/*    reQueryProject={() => queryProject(projectId)}*/}
-                        {/*/>*/}
+                        <ProjectOrganizersTab
+                            project={project}
+                            contract={contract}
+                            walletAddress={walletAddress}
+                            isOrganizer={isOrganizer}
+                            isDonaStaff={isDonaStaff}
+                            showCreateWithdrawalRequestDialog={() => {
+                                setShowCreateWithdrawalRequestDialog(true);
+                            }}
+                            reQueryProject={() => queryProject(projectId)}
+                        />
                     </>
                 );
             default:

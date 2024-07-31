@@ -40,7 +40,9 @@ export default class ThetaVideoApi {
                 }
             );
 
-            return res.body;
+            const json = await res.json();
+
+            return json.body;
         } catch (e) {
             console.log("ThetaVideoApi: getLiveStream: error", e)
             throw e
@@ -61,7 +63,9 @@ export default class ThetaVideoApi {
                 }
             )
 
-            return res.body;
+            const json = await res.json();
+
+            return json.body;
 
         } catch (e) {
             console.log("ThetaVideoApi: listLiveStreams: error", e);
@@ -83,7 +87,9 @@ export default class ThetaVideoApi {
                 }
             )
 
-            return res.body;
+            const json = await res.json();
+
+            return json.body;
 
         } catch (e) {
             console.log("ThetaVideoApi: listEdgeIngestors: error", e);
@@ -108,7 +114,9 @@ export default class ThetaVideoApi {
                 }
             )
 
-            return res.body;
+            const json = await res.json();
+
+            return json.body;
         } catch (e) {
             console.error("ThetaVideoApi: selectEdgeIngestor: error: ", e)
             throw e

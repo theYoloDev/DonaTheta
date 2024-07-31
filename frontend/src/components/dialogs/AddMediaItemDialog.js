@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {FaFileUpload} from "react-icons/fa";
 import PinataCloudApi from "../../scripts/PinataCloudApi";
 import {MdCancel} from "react-icons/md";
@@ -43,6 +43,11 @@ export default function AddMediaItemDialog({
     const [thetaLiveStream, setThetaLiveStream] = useState(null);
     const [thetaEdgeIngestors, setThetaEdgeIngestors] = useState([]);
     const [thetaEdgeIngestor, setThetaEdgeIngestor] = useState(null);
+
+    useEffect(() => {
+        queryThetaLiveStreams();
+        queryThetaEdgeIngestors();
+    }, []);
 
     const handleSubmit = () => {
         if (mediaItemType === null) {
@@ -142,6 +147,7 @@ export default function AddMediaItemDialog({
     const queryThetaEdgeIngestors = async () => {
         try {
             const ingestorResponse = await ThetaVideoApi.listEdgeIngestors();
+            console.log(ingestorResponse)
             const ingestors = ingestorResponse.ingestors;
             setThetaEdgeIngestors(ingestors);
         } catch (e) {
@@ -387,9 +393,9 @@ export default function AddMediaItemDialog({
                         </p>
 
                         {/* Livestreams Section */}
-                        {currentThetaLiveStreams.length < 3 && (
+                        {currentThetaLiveStreams && currentThetaLiveStreams.length < 3 && (
                             <button
-                                className="p-4 mb-4 rounded-lg bg-blue-800 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center justify-center"
+                                className="py-2 px-4 ms-auto rounded-lg bg-blue-800 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center justify-center"
                                 onClick={() => handleCreateThetaLiveStreamUrl("New Livestream")}
                             >
                                 Create Livestream
@@ -400,14 +406,15 @@ export default function AddMediaItemDialog({
                             <div className="mb-4">
                                 <p className="text-white mb-2">Available Livestreams:</p>
                                 <div className="space-y-2">
-                                    {currentThetaLiveStreams.map((stream) => (
+                                    {currentThetaLiveStreams && currentThetaLiveStreams.map((stream) => (
                                         <div
                                             key={stream.id}
                                             className="flex flex-row items-center bg-gray-700 p-2 rounded-lg border border-gray-500 cursor-pointer"
                                         >
-                                            <div className="flex-grow">
-                                                <span className="truncate">{stream.name}</span>
-                                                <span className="ml-2 text-white">Status: {stream.status}</span>
+                                            <div className="grow ps-1">
+                                                <p className="truncate">{stream.name}</p>
+                                                <p className="">Status: {stream.status}</p>
+                                                <p className="truncate">ID: {String(stream.id).replace("stream_", "")}</p>
                                             </div>
                                             <button
                                                 className="ml-2 bg-blue-800 text-white px-2 py-1 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
