@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -18,8 +19,14 @@ jobs:
       - name: Change Directory
         run: cd frontend/
 
+      - name: List
+        run: ls
+
       - name: Install Dependencies
         run: npm install
+
+      - name: List
+        run: ls
 
       - name: Build website
         run: npm run build
